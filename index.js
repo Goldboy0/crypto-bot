@@ -1,11 +1,23 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 const cron = require('node-cron');
+const express = require('express');
 
 // ==================== НАЛАШТУВАННЯ ====================
-// ЗАМІНИ ЦЕЙ ТОКЕН НА СВІЙ З BOTFATHER!
 const TELEGRAM_TOKEN = '8206605639:AAGh2zKr7ZZ2di_Vdh-Bdmg1RLFTvKBOPMM';
 // ======================================================
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Додаємо простий web-сервер для Render
+app.get('/', (req, res) => {
+  res.send('🤖 Crypto Bot is running!');
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Web server running on port ${PORT}`);
+});
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 let userTokens = {};
